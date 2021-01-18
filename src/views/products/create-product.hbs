@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head></head>
+
+<body id="reportsPage">
+    <div class="container tm-mt-big tm-mb-big">
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+                <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="tm-block-title d-inline-block">Add Event</h3>
+                        </div>
+                    </div>
+                    <div class="row tm-edit-product-row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <form id="form" method="POST" action="/products/store" class="tm-edit-product-form"
+                                enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                        <label for="name">Name * </label>
+                                        <input id="name" name="name" type="text" class="form-control validate"
+                                            value="{{product.name}}" required/>
+                                    </div>
+                                    <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                        <label for="max_viewer">Max viewer</label>
+                                        <input id="max_viewer" name="max_viewer" type="number" step="1"
+                                            class="form-control validate" value="{{product.max_viewer}}" required />
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                                        <label for="speaker">Speaker *</label>
+                                        <input id="speaker" name="speaker" type="text" class="form-control validate"
+                                            data-large-mode="true" value="{{product.speaker}}" required />
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="detail">Description</label>
+                                    <textarea class="form-control validate" name="detail"
+                                        rows="6">{{product.detail}}</textarea>
+                                </div>
+                                <h2 class="tm-block-title d-inline-block">Detail</h3>
+                                    <div class="row">
+                                        <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                            <label for="venue">Venue</label>
+                                            <input id="venue" name="venue" type="text" class="form-control validate"
+                                                data-large-mode="true" value="{{product.venue}}" />
+                                        </div>
+                                        <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                            <label for="date">Date </label>
+                                            <input id="date" name="date" type="text"
+                                                class="form-control validate" value="{{product.date}}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group mb-3 col-xs-12 col-sm-12">
+                                            <label for="type_viewer">Type viewer</label>
+                                            <input id="type_viewer" name="type_viewer" type="text"
+                                                class="form-control validate" data-large-mode="true"
+                                                value="{{product.type_viewer}}" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="form-group mb-3 mt-4 col-xs-12 col-sm-4">
+                                            <input name="img" id="fileInput" type="file" accept="image/*"
+                                                hidden="hidden" multiple/>
+                                            <div class="custom-file mt-3 mb-3">
+                                                <input type="button" class="btn btn-primary btn-block mx-auto"
+                                                    value="ADD PRODUCT IMAGE"
+                                                    onclick=" document.getElementById('fileInput').click();" />
+                                            </div>
+                                        </div>
+                                        <div id="carousel-place-holder" class="form-group mb-3 col-xs-12 col-sm-8 mt-3">
+                                        </div>
+                                    </div>
+                                    <input id="photos-remove" name="photos_remove" type="text" class="form-control validate"
+                                        hidden/>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
+                        </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="jquery-ui-datepicker/jquery-ui.min.js"></script>
+    <!-- https://jqueryui.com/download/ -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script type="text/x-handlebars" id="slide-img-template">
+        {{>slide-img}}
+    </script>
+    <script src="js/product/create-product.js"></script>
+     <script>
+         Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        });
+        var template = Handlebars.compile($('#slide-img-template').html());
+    </script>
+</body>
+
+</html>
